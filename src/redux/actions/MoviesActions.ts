@@ -5,7 +5,7 @@ export const moviesActions = {
 	getAllMovies
 };
 
-function getAllMovies(pageNumber = 1) {
+function getAllMovies(pageNumber: number = 1) {
     return dispatch => {
         dispatch(request())
         moviesService.getAllMovies(pageNumber).then(

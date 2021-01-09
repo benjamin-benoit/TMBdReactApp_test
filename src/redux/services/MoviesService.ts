@@ -1,6 +1,6 @@
 export const moviesService = { getAllMovies }
 
-function getAllMovies(pageNumber) {
+function getAllMovies(pageNumber: number) {
 
     const requestOptions = {
         method: 'GET'
