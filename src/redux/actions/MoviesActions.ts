@@ -5,10 +5,10 @@ export const moviesActions = {
 	getAllMovies
 };
 
-export const getAllMovies() {
+function getAllMovies(pageNumber = 1) {
     return dispatch => {
         dispatch(request())
-        moviesService.getAllMovies().then(
+        moviesService.getAllMovies(pageNumber).then(
             data => dispatch(success(data)),
             error => dispatch(failure(error))
         )

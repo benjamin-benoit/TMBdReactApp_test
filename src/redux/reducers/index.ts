@@ -1,6 +1,6 @@
-import {moviesList} from './moviesList';
+import { Movies } from './MoviesReducer';
 import {combineReducers} from 'redux';
 
-export default combineReducers({
-    moviesList
-})
+const root = combineReducers({Movies})
+
+export default root;

@@ -1,9 +1,11 @@
-import moviesActionTypes from '../actionTypes/moviesActionTypes';
+import moviesActionTypes from '../actionTypes/MoviesActionTypes';
 
-export const transactionsList = (state = {}, action) => {
+export function Movies (state = {}, action) {
     switch(action.type) {
         case moviesActionTypes.GET_ALL_MOVIES_REQUEST:
-            return action.payload.data;
+            return {
+                loading: true
+            }
         case moviesActionTypes.GET_ALL_MOVIES_REQUEST_SUCCESS :
             return {
                 data: action.data

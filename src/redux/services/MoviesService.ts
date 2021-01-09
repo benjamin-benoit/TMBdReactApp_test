@@ -1,24 +1,25 @@
-import { handleResponse } from './HandleResponse';
-import axios from "axios";
+export const moviesService = { getAllMovies }
 
-export const userService = { getAllMovies }
+function getAllMovies(pageNumber) {
 
-async function getAllMovies() {
-  try {
-    dispatch({
-      type: POKEMON_LOADING
-    })
+    const requestOptions = {
+        method: 'GET'
+    };
 
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
+    return fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_KEY}&page=${pageNumber}`, requestOptions).then(handleResponse);
+}
 
-    dispatch({
-      type: POKEMON_SUCCESS,
-      payload: res.data
-    })
-
-  } catch(e) {
-    dispatch({
-      type: POKEMON_FAIL
-    })
-  }
+function handleResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            if (response.status === 401) {
+                // auto logout if 401 response returned from api
+                window.location.reload(true);
+            }
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+        return data;
+    });
 }
