@@ -1,4 +1,4 @@
-export const moviesService = { getAllMovies }
+export const moviesService = { getAllMovies, getMovieDetails }
 
 function getAllMovies(pageNumber: number) {
 
@@ -6,7 +6,16 @@ function getAllMovies(pageNumber: number) {
         method: 'GET'
     };
 
-    return fetch(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_API_KEY}&page=${pageNumber}`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`, requestOptions).then(handleResponse);
+}
+
+function getMovieDetails(id: number) {
+
+    const requestOptions = {
+        method: 'GET'
+    };
+
+    return fetch(`${process.env.REACT_APP_API_URL + 'movie/'}${id + '?api_key='}${process.env.REACT_APP_API_KEY}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

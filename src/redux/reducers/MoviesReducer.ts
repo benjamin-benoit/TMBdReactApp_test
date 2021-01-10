@@ -18,3 +18,21 @@ export function Movies (state = {}, action) {
             return state;
     }
 }
+export function MovieDetails (state = {}, action) {
+    switch(action.type) {
+        case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST:
+            return {
+                loading: true
+            }
+        case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_SUCCESS :
+            return {
+                data: action.data
+            }
+        case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_FAILURE :
+            return {
+                error: action.error
+            }
+        default:
+            return state;
+    }
+}

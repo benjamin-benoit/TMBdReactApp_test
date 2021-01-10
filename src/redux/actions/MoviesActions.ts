@@ -2,7 +2,8 @@ import { moviesService } from "../services/MoviesService";
 import { moviesActionTypes } from "../actionTypes/MoviesActionTypes";
 
 export const moviesActions = {
-	getAllMovies
+    getAllMovies,
+    getMovieDetails
 };
 
 function getAllMovies(pageNumber: number = 1) {
@@ -21,5 +22,24 @@ function getAllMovies(pageNumber: number = 1) {
     }
     function failure(error) {
         return { type: moviesActionTypes.GET_ALL_MOVIES_REQUEST_FAILURE, error }
+    }
+}
+
+function getMovieDetails(id: number) {
+    return dispatch => {
+        dispatch(request())
+        moviesService.getMovieDetails(id).then(
+            data => dispatch(success(data)),
+            error => dispatch(failure(error))
+        )
+    }
+    function request() {
+        return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST }
+    }
+    function success(data) {
+        return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_SUCCESS, data }
+    }
+    function failure(error) {
+        return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_FAILURE, error }
     }
 }

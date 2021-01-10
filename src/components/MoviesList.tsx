@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { moviesActions } from '../redux/actions/MoviesActions';
 import Pagination from '@material-ui/lab/Pagination';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
+import MovieItem from './MovieItem';
+
+const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
 
 const MoviesList = () => {
 
@@ -15,15 +23,15 @@ const MoviesList = () => {
 
     return (
         <>
-            <div>
+            <Container>
                 {
                     moviesList && moviesList.results.map((movie, i) => {
-                        return <p key={movie.id}>
-                            { movie.title }
-                        </p>
+                        return (
+                            <MovieItem key={movie.id} movie={movie}/>
+                        )
                     })
                 }
-            </div>
+            </Container>
             <Pagination count={moviesList?.total_pages} page={pageNumber} onChange={(e, v) => {setPageNumber(v)}}/>
         </>
     );
