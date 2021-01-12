@@ -6,11 +6,11 @@ export function Movies (state = {}, action) {
             return {
                 loading: true
             }
-        case moviesActionTypes.GET_ALL_MOVIES_REQUEST_SUCCESS :
+        case moviesActionTypes.GET_ALL_MOVIES_SUCCESS :
             return {
                 data: action.data
             }
-        case moviesActionTypes.GET_ALL_MOVIES_REQUEST_FAILURE :
+        case moviesActionTypes.GET_ALL_MOVIES_FAILURE :
             return {
                 error: action.error
             }
@@ -18,17 +18,18 @@ export function Movies (state = {}, action) {
             return state;
     }
 }
+
 export function MovieDetails (state = {}, action) {
     switch(action.type) {
         case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST:
             return {
                 loading: true
             }
-        case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_SUCCESS :
+        case moviesActionTypes.GET_MOVIE_DETAILS_SUCCESS :
             return {
                 data: action.data
             }
-        case moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_FAILURE :
+        case moviesActionTypes.GET_MOVIE_DETAILS_FAILURE :
             return {
                 error: action.error
             }

@@ -21,19 +21,40 @@ const List = styled.div`
     justify-content: center;
 `
 
+const SearchInput = styled.input`
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    width: 90%;
+    margin-top: 10px;
+`
+
 const MoviesList = () => {
 
     const dispatch = useDispatch();
-    const moviesList = useSelector((state: any) => state?.Movies.data);
     const [pageNumber, setPageNumber] = useState<number>(1);
+    const [search, setSearch] = useState("");
+    const moviesList = useSelector((state: any) => {
+        return search ? state?.MoviesResults.data : state?.Movies.data
+    });
 
     useEffect(() => {
         dispatch(moviesActions.getAllMovies(pageNumber))
     }, [dispatch, pageNumber])
 
+    useEffect(() => {
+        if(search.trim() !== "") {
+            console.log("ben", search)
+            dispatch(moviesActions.getMoviesResults(search))
+        }
+    }, [dispatch, search])
+
     return (
         <Container>
-            <SearchBar/>
+            {/* <SearchBar/> */}
+            <div>
+                <SearchInput onChange={(e) => setSearch(e.target.value)} value={search} type="search"/>
+            </div>
             <List>
                 {
                     moviesList && moviesList.results.map((movie, i) => {
@@ -41,6 +62,11 @@ const MoviesList = () => {
                             <MovieItem key={movie.id} movie={movie}/>
                         )
                     })
+                }
+                {
+                    moviesList && moviesList.results.length === 0 && (
+                        <span>Aucun résultat.</span>
+                    )
                 }
             </List>
             <Pagination count={moviesList?.total_pages} page={pageNumber} onChange={(e, v) => {setPageNumber(v)}}/>

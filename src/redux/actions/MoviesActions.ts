@@ -3,6 +3,7 @@ import { moviesActionTypes } from "../actionTypes/MoviesActionTypes";
 
 export const moviesActions = {
     getAllMovies,
+    getMoviesResults,
     getMovieDetails
 };
 
@@ -18,10 +19,29 @@ function getAllMovies(pageNumber: number = 1) {
         return { type: moviesActionTypes.GET_ALL_MOVIES_REQUEST }
     }
     function success(data) {
-        return { type: moviesActionTypes.GET_ALL_MOVIES_REQUEST_SUCCESS, data }
+        return { type: moviesActionTypes.GET_ALL_MOVIES_SUCCESS, data }
     }
     function failure(error) {
-        return { type: moviesActionTypes.GET_ALL_MOVIES_REQUEST_FAILURE, error }
+        return { type: moviesActionTypes.GET_ALL_MOVIES_FAILURE, error }
+    }
+}
+
+function getMoviesResults(text: string) {
+    return dispatch => {
+        dispatch(request())
+        moviesService.getMoviesResults(text).then(
+            data => dispatch(success(data)),
+            error => dispatch(failure(error))
+        )
+    }
+    function request() {
+        return { type: moviesActionTypes.GET_MOVIE_RESULTS_REQUEST }
+    }
+    function success(data) {
+        return { type: moviesActionTypes.GET_MOVIE_RESULTS_SUCCESS, data }
+    }
+    function failure(error) {
+        return { type: moviesActionTypes.GET_MOVIE_RESULTS_FAILURE, error }
     }
 }
 
@@ -37,9 +57,9 @@ function getMovieDetails(id: number) {
         return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST }
     }
     function success(data) {
-        return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_SUCCESS, data }
+        return { type: moviesActionTypes.GET_MOVIE_DETAILS_SUCCESS, data }
     }
     function failure(error) {
-        return { type: moviesActionTypes.GET_MOVIE_DETAILS_REQUEST_FAILURE, error }
+        return { type: moviesActionTypes.GET_MOVIE_DETAILS_FAILURE, error }
     }
 }

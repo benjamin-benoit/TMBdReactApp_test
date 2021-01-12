@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Router } from 'react-router';
 import { createBrowserHistory } from "history";
-import {ThemeProvider} from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { createGlobalStyle} from 'styled-components';
 import { lightTheme, darkTheme } from "./theme"
 
@@ -32,10 +32,12 @@ function App() {
     theme === 'light' ? setTheme('dark') : setTheme('light')
   }
 
+  const switchTheme = () => (theme === 'light' ? lightTheme : darkTheme);
+
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={switchTheme}>
       <>
-      <Header themeToggler={themeToggler}/>
+      <Header themeToggler={themeToggler} theme={switchTheme()}/>
       <GlobalStyles/>
         <Provider store={store}>
           <Router history={history}>

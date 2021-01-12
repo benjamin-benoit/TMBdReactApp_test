@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const SearchInput = styled.input`
@@ -10,9 +10,12 @@ const SearchInput = styled.input`
 `
 
 const SearchBar = () => {
+
+    const [search, setSearch] = useState();
+
     return (
         <div>
-            <SearchInput type="search"/>
+            <SearchInput onChange={(e, v) => setSearch(v)} value={search} type="search"/>
         </div>
     );
 };
