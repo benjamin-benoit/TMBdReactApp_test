@@ -6,15 +6,19 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import MovieItem from './MovieItem';
+import SearchBar from './SearchBar';
 
 const Container = styled.div`
     margin: auto;
     width: auto;
+    text-align: center;
 `
 
 const List = styled.div`
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 `
 
 const MoviesList = () => {
@@ -29,6 +33,7 @@ const MoviesList = () => {
 
     return (
         <Container>
+            <SearchBar/>
             <List>
                 {
                     moviesList && moviesList.results.map((movie, i) => {
