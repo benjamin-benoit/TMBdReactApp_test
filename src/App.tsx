@@ -35,7 +35,7 @@ function App() {
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <>
-      <Header/>
+      <Header themeToggler={themeToggler}/>
       <GlobalStyles/>
         <Provider store={store}>
           <Router history={history}>

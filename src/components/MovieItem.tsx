@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Element = styled.div`
+    position: relative;
     width: 200px;
     margin: 10px;
 `
@@ -12,7 +13,15 @@ const Image = styled.img`
 `
 
 const Title = styled.div`
-    max-width: 100%;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+`
+
+const TextTitle = styled.h3`
+    font-size: 20px;
 `
 
 const MovieItem = ({movie}) => {
@@ -25,7 +34,7 @@ const MovieItem = ({movie}) => {
             <Image src={"https://image.tmdb.org/t/p/w300" + movie.poster_path} alt="Poster" />
             {isShown && (
                 <Title>
-                    <h3>{movie.title}</h3>
+                    <TextTitle>{movie.title}</TextTitle>
                 </Title>
             )}
         </Element>
