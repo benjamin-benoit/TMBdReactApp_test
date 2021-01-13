@@ -50,9 +50,8 @@ const MoviesList = () => {
 
     return (
         <Container>
-            {/* <SearchBar/> */}
             <div>
-                <SearchInput onChange={(e) => setSearch(e.target.value)} value={search} type="search"/>
+                <SearchInput onChange={(e) => setSearch(e.target.value)} value={search} type="search" placeholder="Rechercher un film"/>
             </div>
             <List>
                 {
