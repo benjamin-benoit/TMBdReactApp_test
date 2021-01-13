@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { moviesActions } from '../redux/actions/MoviesActions';
 import Pagination from '@material-ui/lab/Pagination';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 
 import MovieItem from './MovieItem';
-import SearchBar from './SearchBar';
 
 const Container = styled.div`
     margin: auto;
@@ -69,7 +68,15 @@ const MoviesList = () => {
                     )
                 }
             </List>
-            <Pagination count={moviesList?.total_pages} page={pageNumber} onChange={(e, v) => {setPageNumber(v)}}/>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+            >
+                <Pagination style={{margin: 'auto'}} count={moviesList?.total_pages} page={pageNumber} onChange={(e, v) => {setPageNumber(v)}}/>
+            </Grid>
         </Container>
     );
 };

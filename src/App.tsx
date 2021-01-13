@@ -37,7 +37,7 @@ function App() {
   return (
     <ThemeProvider theme={switchTheme}>
       <>
-      <Header themeToggler={themeToggler} theme={switchTheme()}/>
+      <Header history={history} themeToggler={themeToggler} theme={switchTheme()}/>
       <GlobalStyles/>
         <Provider store={store}>
           <Router history={history}>
