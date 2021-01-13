@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { moviesActions } from '../redux/actions/MoviesActions';
 import { useParams } from "react-router";
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -41,15 +40,13 @@ const MovieVote = styled.div`
 
 const MovieDetails = () => {
 
-    const history = useHistory()
-
     const dispatch = useDispatch();
     const movieDetails = useSelector((state: any) => state?.MovieDetails.data);
     const { id } = useParams() as any;
 
     useEffect(() => {
         dispatch(moviesActions.getMovieDetails( id ))
-    }, [dispatch])
+    }, [dispatch, id])
     
     return (
         <Container>
